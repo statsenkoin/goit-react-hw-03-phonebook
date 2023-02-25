@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
+import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import {
@@ -27,6 +28,7 @@ export const FormikForm = ({ onSubmit }) => {
         onSubmit={(values, { resetForm }) => {
           onSubmit({
             ...values,
+            id: nanoid(8),
           });
           resetForm();
         }}

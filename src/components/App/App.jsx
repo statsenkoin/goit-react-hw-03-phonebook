@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
 import { initialContacts } from 'dataBase';
 import {
   Layout,
@@ -25,7 +24,6 @@ class App extends Component {
       return alert(`${userName} is already in contacts!`);
     }
 
-    newContact = { ...newContact, id: nanoid(8) };
     this.setState(({ contacts }) => ({ contacts: [newContact, ...contacts] }));
   };
 
