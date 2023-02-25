@@ -24,11 +24,6 @@ export const Title = styled.h1`
   font-size: 38px;
 `;
 
-export const FormsWrapper = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
 export const ContactsTitle = styled.h2`
   font-size: 28px;
   margin-top: 20px;

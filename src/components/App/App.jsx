@@ -4,13 +4,11 @@ import { initialContacts } from 'dataBase';
 import {
   Layout,
   Title,
-  FormsWrapper,
   Notification,
   ContactsTitle,
   ContactListBox,
 } from './App.styled';
 import { Filter, ContactList, FormikForm } from 'components';
-// import { ContactForm } from 'components';
 
 class App extends Component {
   state = {
@@ -55,10 +53,7 @@ class App extends Component {
     return (
       <Layout>
         <Title>Phonebook</Title>
-        <FormsWrapper>
-          {/* <ContactForm onSubmit={this.addContact}></ContactForm> */}
-          <FormikForm onSubmit={this.addContact}></FormikForm>
-        </FormsWrapper>
+        <FormikForm onSubmit={this.addContact}></FormikForm>
         <ContactsTitle>Contacts</ContactsTitle>
         {contacts.length ? (
           <ContactListBox>
