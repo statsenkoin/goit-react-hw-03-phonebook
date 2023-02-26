@@ -59,9 +59,11 @@ class App extends Component {
   addTestData = () => {
     // storage.add('contacts', initialContacts);
 
-    // initialContacts as a test data may be added several times
-    // It checks and prevents to add if some of initialContacts
-    // is in this.state.contacts
+    /**
+     * initialContacts as test data may be added several times
+     * It checks items and prevents adding if some of initialContacts
+     * are in this.state.contacts
+     */
     const newTestContactsList = initialContacts.filter(
       ({ id: newId }) =>
         !this.state.contacts
