@@ -62,13 +62,15 @@ class App extends Component {
     // initialContacts as a test data may be added several times
     // It checks and prevents to add if some of initialContacts
     // is in this.state.contacts
-    const newValue = initialContacts.filter(
+    const newTestContactsList = initialContacts.filter(
       ({ id: newId }) =>
         !this.state.contacts
           .reduce((acc, { id: prevId }) => [...acc, prevId], [])
           .includes(newId)
     );
-    this.setState(({ contacts }) => ({ contacts: [...contacts, ...newValue] }));
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, ...newTestContactsList],
+    }));
   };
 
   render() {
