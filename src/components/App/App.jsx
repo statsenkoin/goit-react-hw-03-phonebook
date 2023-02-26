@@ -8,12 +8,23 @@ import {
   ContactListBox,
 } from './App.styled';
 import { Filter, ContactList, FormikForm } from 'components';
+import { localStorageService as storage } from 'utils';
 
 class App extends Component {
   state = {
-    contacts: initialContacts,
+    contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const data = storage.load('contacts');
+    if (data) this.setState({ contacts: data });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (contacts !== prevState.contacts) storage.save('contacts', contacts);
+  }
 
   addContact = newContact => {
     const { name: userName } = newContact;
@@ -45,11 +56,29 @@ class App extends Component {
     );
   };
 
+  addTestData = () => {
+    // storage.add('contacts', initialContacts);
+
+    // initialContacts as a test data may be added several times
+    // It checks and prevents to add if some of initialContacts
+    // is in this.state.contacts
+    const newValue = initialContacts.filter(
+      ({ id: newId }) =>
+        !this.state.contacts
+          .reduce((acc, { id: prevId }) => [...acc, prevId], [])
+          .includes(newId)
+    );
+    this.setState(({ contacts }) => ({ contacts: [...contacts, ...newValue] }));
+  };
+
   render() {
     const filteredContacts = this.filterContactsByName();
     const { contacts, filter } = this.state;
     return (
       <Layout>
+        <button type="button" onClick={this.addTestData}>
+          Add test data
+        </button>
         <Title>Phonebook</Title>
         <FormikForm onSubmit={this.addContact}></FormikForm>
         <ContactsTitle>Contacts</ContactsTitle>
