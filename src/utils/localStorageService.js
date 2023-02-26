@@ -46,7 +46,7 @@ export const localStorageService = {
     localStorage.removeItem(key);
   },
 
-  clean(key) {
+  clean() {
     localStorage.clear();
   },
 };
